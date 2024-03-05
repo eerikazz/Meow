@@ -14,6 +14,8 @@
 
 body {
     height: 100lvh;
+    box-sizing: border-box;
+
     background-color: var(--bg);
 
     display: grid;
@@ -73,6 +75,10 @@ button:hover {
 #next {
     background: rgb(81,198,133);
     background: radial-gradient(circle, rgba(81,198,133,0.5) 0%, rgba(233,233,237,1) 96%);  
+}
+
+.disable-dbl-tap-zoom {
+    touch-action: manipulation;
 }
 
 @media (max-width: 600px) {
