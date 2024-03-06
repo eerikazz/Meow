@@ -1,26 +1,48 @@
 $(document).ready(function() {
     let cats = [];
     let index = 0;
-    const PREFETCH_THRESHOLD = 5;
-    const BATCH_SIZE = 10;
-    const loadingGifUrl = 'paws.gif'; // Replace with the actual URL or path to your loading gif
 
     function getImg() {
-        if (cats[index]) {
-            $('img').attr('src', cats[index].url);
-        }
+        $('img').attr('src', cats[index].url);
     }
 
     function fetchTheCats() {
-        if (cats.length === 0) {
-            $('img').attr('src', loadingGifUrl); // Display loading gif if cats array is empty
-        }
-        $.get('https://api.thecatapi.com/v1/images/search?limit=' + BATCH_SIZE, function(data) {
-            cats = cats.slice(index).concat(data); // Remove viewed images and add new ones
-            index = 0; // Reset index as we've sliced the array
-            getImg();
+        $.get('https://api.thecatapi.com/v1/images/search?limit=10', function(data) {
+            data.forEach(function(cat) {
+                cats.push(cat);
+            });
+
+            getImg(index);
         });
     }
+
+    fetchTheCats();
+
+    // $('#next').click(function(){
+    //     getImg();
+    //     index += 1;
+
+    //     if (index === 9) {
+    //         fetchTheCats();
+    //         cats.splice(0, 10);
+    //     } else if (index === 10) {
+    //         index = 0;
+    //     }
+    // });
+
+    $('#next').click(function(){
+        index = (index + 1) % cats.length;
+    
+        if (index === 0 || (cats.length - index) === 1) { // Check if it's time to fetch new data
+            fetchTheCats();
+        }
+    
+        getImg();
+
+        console.log(index);
+        console.log(cats);
+    });
+    
 
     function like() {
         var img = $('img'); // Assuming there's only one image on the page
@@ -96,23 +118,14 @@ $(document).ready(function() {
         });
     }
 
-    $('#next').click(function() {
-        index += 1;
-
-        if (index >= cats.length) {
-            index = 0; // Safeguard in case of array bounds
-        }
-
-        if (cats.length - index === PREFETCH_THRESHOLD) {
-            fetchTheCats();
-        } else {
-            getImg();
-        }
-    });
-
     $('#like').click(function(){
         like();
     });
-
-    fetchTheCats(); // Initially fetch the cats
+ 
+    $(document).keydown(function(e) {
+        if (e.which == 32) {
+            e.preventDefault();
+            fetchImg();
+        }
+    });
 });
