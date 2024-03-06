@@ -13,18 +13,25 @@
 }
 
 body {
-    height: 100vh;
+
     background-color: var(--bg);
 
     display: grid;
-    grid-template-columns: 1fr minmax(256px, 512px) minmax(32px, 64px) 1fr;
+    place-content: center;
+}
+
+#app {
+    padding: 16px;
+    height: 100lvh;
+    box-sizing: border-box;
+
+    display: grid;
+    grid-template-columns: minmax(256px, 512px) minmax(32px, 64px);
     place-content: center;
     gap: 32px;
 }
 
 img {
-    grid-column: 2;
-
     aspect-ratio: 1/1;
     width: 100%;
 
@@ -39,7 +46,6 @@ img {
 }
 
 .controls {
-    grid-column: 3;
     justify-content: center;
 
     height: 100%;
@@ -80,14 +86,13 @@ button:hover {
 }
 
 @media (max-width: 600px) {
-    body {
-        grid-template-columns: 1fr minmax(256px, 400px) 1fr;
+    #app {
+        grid-template-columns: minmax(256px, 400px);
         grid-template-rows: minmax(256px, 400px) minmax(32px, 64px);
     }
 
     .controls {
-        grid-column: 2;
-        grid-row: 2;
+        justify-content: space-around;
     }
 
     .controls {
