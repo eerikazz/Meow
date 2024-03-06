@@ -64,7 +64,7 @@ $(document).ready(function(){
         <stop offset="1" stop-color="#FF6274" stop-opacity="0"/>
         </radialGradient>
         </defs>
-    </svg>`);
+        </svg>`);
         
         var randomX = imgOffset.left + Math.random() * imgWidth - 16;
         var bottomY = imgOffset.top + imgHeight - 28;
@@ -87,5 +87,12 @@ $(document).ready(function(){
 
     $('#like').click(function(){
         like();
+    });
+ 
+    $(document).keydown(function(e) {
+        if (e.which == 32) {
+            e.preventDefault();
+            fetchImg();
+        }
     });
 });

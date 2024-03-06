@@ -1,6 +1,6 @@
 :root {
     --bg: hsl(240, 4%, 95%);
-    --shadow: hsl(240, 10%, 92%);
+    --shadow: hsl(240, 10%, 88%);
     --red: hsl(353, 100%, 69%);
     --green: hsl(147, 51%, 55%);
 }
@@ -13,13 +13,11 @@
 }
 
 body {
-    height: 100lvh;
-    box-sizing: border-box;
-
+    height: 100vh;
     background-color: var(--bg);
 
     display: grid;
-    grid-template-columns: 1fr minmax(256px, 400px) minmax(32px, 64px) 1fr;
+    grid-template-columns: 1fr minmax(256px, 512px) minmax(32px, 64px) 1fr;
     place-content: center;
     gap: 32px;
 }
@@ -33,7 +31,7 @@ img {
     object-fit: cover;
     object-position: center;
 
-    border-radius: 10px;
+    border-radius: 16px;
 
     background-color: var(--shadow);
 
