@@ -13,21 +13,18 @@
 }
 
 body {
-
     background-color: var(--bg);
-
-    display: grid;
-    place-content: center;
 }
 
 #app {
-    padding: 16px;
-    height: 100lvh;
-    box-sizing: border-box;
+    height: 100vh;
+    max-width: 512px;
 
-    display: grid;
-    grid-template-columns: minmax(256px, 512px) minmax(32px, 64px);
-    place-content: center;
+    margin: 0 auto;
+    padding: 16px;
+
+    display: flex;
+    align-items: center;
     gap: 32px;
 }
 
@@ -49,7 +46,7 @@ img {
     justify-content: center;
 
     height: 100%;
-    width: 100%;
+    width: max-content;
 
     display: flex;
     flex-direction: column;
@@ -58,6 +55,7 @@ img {
 
 button {
     aspect-ratio: 1/1;
+    padding: 16px;
 
     border-radius: 96px;
 
@@ -87,11 +85,11 @@ button:hover {
 
 @media (max-width: 600px) {
     #app {
-        grid-template-columns: minmax(256px, 400px);
-        grid-template-rows: minmax(256px, 400px) minmax(32px, 64px);
+        flex-direction: column;
     }
 
     .controls {
+        align-items: center;
         justify-content: space-around;
     }
 
