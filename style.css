@@ -85,7 +85,7 @@ button:hover {
 
 @media (max-width: 600px) {
     #app {
-        height: 80vh;
+        height: max-content;
         flex-direction: column;
     }
 
