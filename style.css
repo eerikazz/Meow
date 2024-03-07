@@ -1,101 +1,127 @@
 :root {
-    --bg: hsl(240, 4%, 95%);
-    --shadow: hsl(240, 10%, 88%);
-    --red: hsl(353, 100%, 69%);
-    --green: hsl(147, 51%, 55%);
+    --text: hsl(269, 20%, 24%);
+    --muted: hsl(210, 2%, 72%);
+    --shadow: hsl(240, 10%, 90%);
+    --block1: hsl(194, 19%, 68%);
+    --block2: hsl(196, 9%, 51%);
 }
 
 * {
     margin: 0;
     padding: 0;
-
     border: none;
+
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+}
+
+html {
+    height: 100lvh;
 }
 
 body {
-    background-color: var(--bg);
+    height: 100%;
+    background: rgb(242,245,247);
+    background: linear-gradient(0deg, rgba(242,245,247,1) 0%, rgba(249,251,251,1) 100%); 
+    display: flex;
+    justify-content: center;
+}
+
+.container {
+    display: flex;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
 }
 
 #app {
-    height: 100vh;
-    max-width: 512px;
+    padding: 0px 16px;
+    display: grid;
+    grid-template-columns: minmax(256px, 428px);
+    grid-template-rows: minmax(max-content, 1fr) max-content minmax(max-content, 1fr);
+    gap: 16px;
+}
 
-    margin: 0 auto;
-    padding: 16px;
-
-    display: flex;
+header {
+    flex-grow: 1;
+    padding-top: 16px;
     align-items: center;
-    gap: 32px;
+    justify-content: center;
+    gap: 16px;
+}
+
+#logo {
+    display: grid;
+    place-content: center;
+}
+
+#logo svg {
+    grid-column: 1;
+    grid-row: 1;
+}
+
+h1 {
+    grid-column: 1;
+    grid-row: 1;
+
+    font-size: 24px;
+}
+
+#fact {
+    font-size: 14px;
+    text-align: center;
+    color: var(--muted);
+}
+
+#feed {
+    gap: 2px;
 }
 
 img {
     aspect-ratio: 1/1;
     width: 100%;
-
     object-fit: cover;
     object-position: center;
-
     border-radius: 16px;
-
     background-color: var(--shadow);
-
-    box-shadow: 0px 0px 12px var(--shadow);
+    box-shadow: 0px 0px 16px var(--shadow);
 }
 
-.controls {
-    justify-content: center;
+.block {
+    height: 8px;
+    border-radius: 0px 0px 8px 8px;
+}
 
-    height: 100%;
-    width: max-content;
+.b1 {
+    margin: 0px 16px 0px 16px;
+    background-color: var(--block1);
+}
 
-    display: flex;
-    flex-direction: column;
-    gap: 32px;
+.b2 {
+    margin: 0px 32px 0px 32px;
+    background-color: var(--block2);
+}
+
+#controls {
+    flex-grow: 1;
 }
 
 button {
-    aspect-ratio: 1/1;
-    padding: 16px;
-
-    border-radius: 96px;
-
-    box-shadow: 0px 0px 12px var(--shadow);
-
-    display: grid;
-    place-content: center;
+    flex-grow: 1;
+    font-size: 14px;
+    color: var(--muted);
+    background: none;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
 }
 
 button:hover {
     cursor: pointer;
+    color: var(--text);
 }
-
-#like {
-    background: rgb(255,98,116);
-    background: radial-gradient(circle, rgba(255,98,116,0.5) 0%, rgba(233,233,237,1) 96%); 
-}
-
-#next {
-    background: rgb(81,198,133);
-    background: radial-gradient(circle, rgba(81,198,133,0.5) 0%, rgba(233,233,237,1) 96%);  
-}
-
-.disable-dbl-tap-zoom {
-    touch-action: manipulation;
-}
-
-@media (max-width: 600px) {
-    #app {
-        height: max-content;
-        flex-direction: column;
-    }
-
-    .controls {
-        align-items: center;
-        justify-content: space-around;
-    }
-
-    .controls {
-        flex-direction: row;
-    }
-}
-  
