@@ -3,17 +3,38 @@ $(document).ready(function() {
     let index = 0;
     const PREFETCH_THRESHOLD = 5;
     const BATCH_SIZE = 10;
-    const loadingGifUrl = 'paws.gif'; // Replace with the actual URL or path to your loading gif
+    const loadingGifUrl = 'paws.gif';
+
+    // console.log(window.location.href);
+
+    let currentURL = window.location.href
+
+    // This function checks the URL and logs the path if it exists
+    function checkAndLogPath() {
+        const url = window.location.href;
+        const pathname = window.location.pathname;
+
+        // Assuming your domain is "domain.com"
+        if (pathname && pathname !== '/') {
+            console.log(`Path after domain: ${pathname}`);
+        } else {
+            console.log("No additional path after domain");
+        }
+    }
+
+    // Call the function
+    checkAndLogPath();
 
     function getImg() {
         if (cats[index]) {
             $('img').attr('src', cats[index].url);
         }
+        console.log(cats[index].id);
     }
 
     function fetchTheCats() {
         if (cats.length === 0) {
-            $('img').attr('src', loadingGifUrl); // Display loading gif if cats array is empty
+            $('img').attr('src', loadingGifUrl);
         }
         $.get('https://api.thecatapi.com/v1/images/search?limit=' + BATCH_SIZE, function(data) {
             cats = cats.slice(index).concat(data); // Remove viewed images and add new ones
@@ -100,7 +121,7 @@ $(document).ready(function() {
         index += 1;
 
         if (index >= cats.length) {
-            index = 0; // Safeguard in case of array bounds
+            index = 0;
         }
 
         if (cats.length - index === PREFETCH_THRESHOLD) {
@@ -114,5 +135,17 @@ $(document).ready(function() {
         like();
     });
 
-    fetchTheCats(); // Initially fetch the cats
+    const pathname = window.location.pathname;
+
+    if (pathname && pathname !== '/') {
+        console.log(`Path after domain: ${pathname}`); 
+
+        $.get(`https://api.thecatapi.com/v1/images${pathname}`, function(data){
+            $('img').attr('src', data[0].url);
+            console.log(data[0].url);
+        });
+    } else {
+        console.log("No additional path after domain");
+        fetchTheCats();
+    }
 });
