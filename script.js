@@ -3,9 +3,13 @@ $(document).ready(function() {
     let index = 0;
     const PREFETCH_THRESHOLD = 5;
     const BATCH_SIZE = 10;
-    const loadingGifUrl = 'paws.gif'; // Replace with the actual URL or path to your loading gif
+    const loadingGifUrl = 'inc/paws.gif';
 
     function getImg() {
+        $.get('https://catfact.ninja/fact', function(data) {
+            $('#fact').html(data.fact);
+        });
+
         if (cats[index]) {
             $('img').attr('src', cats[index].url);
         }
@@ -23,7 +27,7 @@ $(document).ready(function() {
     }
 
     function like() {
-        var img = $('img'); // Assuming there's only one image on the page
+        var img = $('img');
         var imgOffset = img.offset();
         var imgWidth = img.width();
         var imgHeight = img.height();
@@ -114,5 +118,5 @@ $(document).ready(function() {
         like();
     });
 
-    fetchTheCats(); // Initially fetch the cats
+    fetchTheCats();
 });
