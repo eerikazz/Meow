@@ -67,11 +67,12 @@ h1 {
     grid-column: 1;
     grid-row: 1;
 
-    font-size: 24px;
+    font-size: 20px;
 }
 
 #fact {
-    font-size: 14px;
+    font-size: 12px;
+    font-size: calc(14px + 10px * ((100vw - 256px) / (428px - 256px)));
     text-align: center;
     color: var(--muted);
 }
