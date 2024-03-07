@@ -5,9 +5,21 @@ $(document).ready(function() {
     const BATCH_SIZE = 10;
     const loadingGifUrl = 'paws.gif';
 
-    // console.log(window.location.href);
+    function getIdFromPath(path) {
+        const parts = path.split('/');
+        return parts.length > 1 ? parts[1] : null;
+    }
 
-    let currentURL = window.location.href
+    function fetchCatById(id) {
+        $.get(`https://api.thecatapi.com/v1/images/${id}`, function(data) {
+            if (data.length > 0) {
+                $('img').attr('src', data[0].url);
+                console.log(data[0].url);
+            } else {
+                console.log("Cat with the specified ID not found.");
+            }
+        });
+    }
 
     // This function checks the URL and logs the path if it exists
     function checkAndLogPath() {
@@ -136,16 +148,16 @@ $(document).ready(function() {
     });
 
     const pathname = window.location.pathname;
+    const catId = getIdFromPath(pathname);
 
-    if (pathname && pathname !== '/') {
-        console.log(`Path after domain: ${pathname}`); 
+    if (catId) {
+        console.log(`Cat ID from path: ${catId}`);
+        fetchCatById(catId);
 
-        $.get(`https://api.thecatapi.com/v1/images${pathname}`, function(data){
-            $('img').attr('src', data[0].url);
-            console.log(data[0].url);
-        });
+        // Redirect to the base URL after fetching the cat image
+        history.pushState(null, null, '/');
     } else {
-        console.log("No additional path after domain");
+        console.log("No cat ID in path.");
         fetchTheCats();
     }
 });
