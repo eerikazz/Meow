@@ -5,6 +5,10 @@ $(document).ready(function() {
     const BATCH_SIZE = 10;
     const loadingGifUrl = 'inc/paws.gif';
 
+    $(window).on('resize', function() {
+        $('body').css('height', window.innerHeight);
+    });
+
     function getImg() {
         $.get('https://catfact.ninja/fact?max_length=128', function(data) {
             $('#fact').html(data.fact);
