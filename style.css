@@ -16,12 +16,8 @@
     font-style: normal;
 }
 
-html {
-    max-height: 100lvh;
-}
-
 body {
-    max-height: 100vh;
+    height: 100vh;
     background: rgb(242,245,247);
     background: linear-gradient(0deg, rgba(242,245,247,1) 0%, rgba(249,251,251,1) 100%); 
     display: flex;
