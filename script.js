@@ -1,14 +1,16 @@
 $(document).ready(function() {
     let cats = [];
     let index = 0;
-    const PREFETCH_THRESHOLD = 5;
-    const BATCH_SIZE = 10;
-    const loadingGifUrl = 'inc/paws.gif';
+    let PREFETCH_THRESHOLD = 5;
+    let BATCH_SIZE = 10;
+    let loadingGifUrl = 'inc/paws.gif'; 
+    let height = `${window.innerHeight}px`;
 
-    $('body').css('height', window.innerHeight);
+    $('body').css('height', height);
 
     $(window).on('resize', function() {
-        $('body').css('height', window.innerHeight);
+        height = `${window.innerHeight}px`;
+        $('body').css('height', height);
     });
 
     function getImg() {
