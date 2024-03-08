@@ -37,7 +37,7 @@ body {
     padding: 0px 16px;
     display: grid;
     grid-template-columns: minmax(256px, 400px);
-    grid-template-rows: max-content minmax(max-content, 1fr) max-content minmax(max-content, 1fr);
+    grid-template-rows: minmax(max-content, 1fr) max-content minmax(max-content, 1fr);
     gap: 16px;
 }
 
@@ -48,8 +48,11 @@ header {
 }
 
 #logo {
+    flex: 1;
+
     display: grid;
-    place-content: center;
+    justify-content: center;
+    align-items: end;
 }
 
 #logo svg {
@@ -60,13 +63,11 @@ header {
 h1 {
     grid-column: 1;
     grid-row: 1;
-
     font-size: 20px;
 }
 
 #factCon {
-    flex-grow: 1;
-    align-items: center;
+    flex: 1;
     justify-content: center;
 }
 
