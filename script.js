@@ -6,7 +6,7 @@ $(document).ready(function() {
     const loadingGifUrl = 'inc/paws.gif';
 
     function getImg() {
-        $.get('https://catfact.ninja/fact', function(data) {
+        $.get('https://catfact.ninja/fact?max_length=128', function(data) {
             $('#fact').html(data.fact);
         });
 
