@@ -5,6 +5,8 @@ $(document).ready(function() {
     const BATCH_SIZE = 10;
     const loadingGifUrl = 'inc/paws.gif';
 
+    $('body').css('height', window.innerHeight);
+
     $(window).on('resize', function() {
         $('body').css('height', window.innerHeight);
     });
